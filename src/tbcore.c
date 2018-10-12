@@ -323,7 +323,7 @@ static void init_tb(char *str)
 void init_tablebases(const char *path)
 {
   char str[16];
-  int i, j, k, l;
+  int i, j, k, l, m;
 
   if (initialized) {
     free(path_string);
@@ -433,6 +433,19 @@ void init_tablebases(const char *path)
 	  sprintf(str, "K%c%c%c%cvK", pchr[i], pchr[j], pchr[k], pchr[l]);
 	  init_tb(str);
 	}
+
+  for (i = 1; i < 6; i++)
+    for (j = i; j < 6; j++)
+      for (k = j; k < 6; k++)
+	for (l = k; l < 6; l++)
+	  for (m = l; m < 6; m++) {
+	    sprintf(str, "K%c%c%c%c%cvK", pchr[i], pchr[j], pchr[k], pchr[l], pchr[m]);
+	    init_tb(str);
+	    sprintf(str, "K%c%c%c%cvK%c", pchr[i], pchr[j], pchr[k], pchr[l], pchr[m]);
+	    init_tb(str);
+	    sprintf(str, "K%c%c%cvK%c%c", pchr[i], pchr[j], pchr[k], pchr[l], pchr[m]);
+	    init_tb(str);
+	  }
 
 //  printf("Found %d tablebases.\n", TBnum_piece + TBnum_pawn);
 }
